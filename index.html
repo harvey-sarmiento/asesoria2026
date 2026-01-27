@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesoría Fitness Premium - Harvey Sarmiento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --gold: #d4af37;
+            --gold-light: #f4d870;
+            --gold-dark: #b8941f;
+            --white: #ffffff;
+            --gray: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--black) 0%, #1a1410 100%);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            color: var(--black);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            animation: shimmer 2s infinite, float 3s ease-in-out infinite;
+            transition: transform 0.2s ease;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.3s backwards, glow-text 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-text {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--gold-light);
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .hero .btn {
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        /* Goals Section */
+        .goals-section {
+            padding: 80px 20px;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--gold);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .goal-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .goal-card:nth-child(2) { animation-delay: 0.1s; }
+        .goal-card:nth-child(3) { animation-delay: 0.2s; }
+        .goal-card:nth-child(4) { animation-delay: 0.3s; }
+        .goal-card:nth-child(5) { animation-delay: 0.4s; }
+        .goal-card:nth-child(6) { animation-delay: 0.5s; }
+        .goal-card:nth-child(7) { animation-delay: 0.6s; }
+        .goal-card:nth-child(8) { animation-delay: 0.7s; }
+
+        .goal-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+        }
+
+        .goal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .goal-card:hover .goal-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .goal-card h3 {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .goal-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* How it Works */
+        .how-section {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+
+        .how-steps {
+            display: grid;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 25px;
+            align-items: start;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .step:nth-child(2) { animation-delay: 0.15s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.45s; }
+
+        .step-number {
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Premium Plan */
+        .premium-section {
+            padding: 80px 20px;
+            background: var(--gray);
+        }
+
+        .premium-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .premium-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .premium-column {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .premium-column h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .premium-column ul {
+            list-style: none;
+        }
+
+        .premium-column li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .premium-column li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, var(--gray) 0%, #1a1410 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .pricing-card:nth-child(2) { 
+            animation-delay: 0.15s; 
+            transform: scale(1.05);
+            border-color: var(--gold);
+        }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .pricing-card:nth-child(2)::after {
+            content: 'MÁS POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--gold);
+            color: var(--black);
+            padding: 5px 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transform: rotate(45deg);
+        }
+
+        .pricing-duration {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .pricing-currency {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Glow effect */
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            }
+        }
+
+        .pricing-card {
+            animation: fadeInUp 0.6s ease-out backwards, glow 3s ease-in-out infinite;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .pricing-card:nth-child(2) {
+                transform: scale(1);
+            }
+
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .premium-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Resultados desde el día 10</div>
+            <h1>Transforma Tu Cuerpo<br>Y Tu Mente</h1>
+            <p class="hero-subtitle">Asesoría Premium Personalizada con Harvey Sarmiento</p>
+            <a href="#pricing" class="btn">Inicia Tu Transformación</a>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals-section">
+        <div class="container">
+            <h2 class="section-title">¿Qué Lograrás?</h2>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-icon">🔥</div>
+                    <h3>Reduce Tu Grasa</h3>
+                    <p>Disminuye tu porcentaje de grasa corporal de forma saludable y sostenible</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">📏</div>
+                    <h3>Reduce Medidas</h3>
+                    <p>Pierde centímetros en abdomen y reduce tu talla de ropa</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">🍫</div>
+                    <h3>Marca Tu Abdomen</h3>
+                    <p>Define y fortalece tu zona media con resultados visibles</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">💪🏽</div>
+                    <h3>Elimina Flacidez</h3>
+                    <p>Tonifica tu cuerpo y fortalece tu musculatura</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">✨</div>
+                    <h3>Reduce Celulitis</h3>
+                    <p>Mejora la apariencia de tu piel y tonifica</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">🍑</div>
+                    <h3>Aumenta Glúteos</h3>
+                    <p>Desarrolla y levanta tus glúteos de forma natural</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">💪🏽</div>
+                    <h3>Aumenta Masa Muscular</h3>
+                    <p>Construye músculo y fortalece todo tu cuerpo</p>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-icon">🧠</div>
+                    <h3>Hábitos Duraderos</h3>
+                    <p>Aprende a mantener tus resultados a largo plazo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <div class="how-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Nutrición Aplicable</h3>
+                        <p>Aprende a comer saludable con menús fáciles que se ajusten a tu presupuesto. Conceptos básicos de nutrición de forma práctica y sencilla.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Control de Ansiedad</h3>
+                        <p>Tips prácticos para controlar y calmar tu ansiedad. Técnicas efectivas que realmente funcionan.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Mantén Tus Resultados</h3>
+                        <p>Aprende a mantener tus resultados cuando ya no estés en la asesoría. Herramientas para el éxito a largo plazo.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Cambia Tus Hábitos</h3>
+                        <p>Trabaja en ti mismo, en cómo te sientes y cómo te ves. Transformación real desde adentro hacia afuera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Plan -->
+    <section class="premium-section">
+        <div class="container">
+            <h2 class="section-title">Plan Premium</h2>
+            <div class="premium-content">
+                <div class="premium-columns">
+                    <div class="premium-column">
+                        <h3>📚 Módulos de Video</h3>
+                        <ul>
+                            <li>Nutrición aplicable</li>
+                            <li>Cómo mantener tus resultados</li>
+                            <li>Cómo evitar el efecto rebote</li>
+                        </ul>
+                    </div>
+                    <div class="premium-column">
+                        <h3>🏋️ Entrenamiento</h3>
+                        <ul>
+                            <li>Rutinas cortas y efectivas en video para casa</li>
+                            <li>Rutinas para gym con progresiones</li>
+                            <li>Biseries para acelerar resultados</li>
+                        </ul>
+                    </div>
+                    <div class="premium-column">
+                        <h3>🎯 Enfoque Diario</h3>
+                        <ul>
+                            <li>30 videos con pequeños desafíos</li>
+                            <li>Mantente enfocada y motivada</li>
+                            <li>Forma tu mentalidad</li>
+                            <li>Cambia tus hábitos</li>
+                        </ul>
+                    </div>
+                    <div class="premium-column">
+                        <h3>🍽️ Plan de Alimentación</h3>
+                        <ul>
+                            <li>Acompañamiento personalizado</li>
+                            <li>Lista de compras y snacks</li>
+                            <li>Guía de organización semanal</li>
+                            <li>eBooks de recetas fáciles Vol. 1 y 2</li>
+                            <li>Chequeo cada 10 días</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Elige Tu Plan</h2>
+            <div class="pricing-grid">
+                <!-- Plan 1 Mes -->
+                <div class="pricing-card">
+                    <div class="pricing-duration">1 Mes</div>
+                    <div class="pricing-price">$350.000</div>
+                    <span class="pricing-currency">Pesos Colombianos (COP)</span>
+                    <ul class="pricing-features">
+                        <li>Plan Premium completo</li>
+                        <li>Módulos de video</li>
+                        <li>Rutinas personalizadas</li>
+                        <li>Plan de alimentación</li>
+                        <li>Chequeos cada 10 días</li>
+                        <li>Acompañamiento constante</li>
+                    </ul>
+                    <a href="https://checkout.bold.co/payment/LNK_JUHVBI6IPU" class="btn">Comprar Plan 1 Mes</a>
+                </div>
+
+                <!-- Plan 2 Meses -->
+                <div class="pricing-card">
+                    <div class="pricing-duration">2 Meses</div>
+                    <div class="pricing-price">$550.000</div>
+                    <span class="pricing-currency">Pesos Colombianos (COP)</span>
+                    <ul class="pricing-features">
+                        <li>Todo el Plan Premium</li>
+                        <li>Ahorra $150.000</li>
+                        <li>Mayor tiempo de seguimiento</li>
+                        <li>Resultados más profundos</li>
+                        <li>Mejor formación de hábitos</li>
+                        <li>Recomendado por expertos</li>
+                    </ul>
+                    <a href="https://checkout.bold.co/payment/LNK_XRALVFTDPB" class="btn">Comprar Plan 2 Meses</a>
+                </div>
+
+                <!-- Plan 3 Meses -->
+                <div class="pricing-card">
+                    <div class="pricing-duration">3 Meses</div>
+                    <div class="pricing-price">$700.000</div>
+                    <span class="pricing-currency">Pesos Colombianos (COP)</span>
+                    <ul class="pricing-features">
+                        <li>Plan Premium extendido</li>
+                        <li>Ahorra $350.000</li>
+                        <li>Transformación completa</li>
+                        <li>Hábitos consolidados</li>
+                        <li>Resultados duraderos</li>
+                        <li>Máximo valor</li>
+                    </ul>
+                    <a href="https://checkout.bold.co/payment/LNK_VKFH0XZ3TL" class="btn">Comprar Plan 3 Meses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>¿Listo para Transformarte?</h2>
+            <p>Después de realizar el pago, envía tu comprobante por WhatsApp y te enviaré los pasos a seguir.</p>
+            <a href="https://wa.me/573015619137?text=Hola%20Harvey,%20acabo%20de%20realizar%20el%20pago%20de%20mi%20asesor%C3%ADa%20fitness" class="btn">Contactar por WhatsApp</a>
+            <p style="margin-top: 30px; font-size: 0.95rem; color: rgba(255,255,255,0.6);">Oferta válida hasta el 31 de diciembre de 2026</p>
+            <p style="margin-top: 15px; font-size: 1rem; color: var(--gold);">🌎 Disponible desde cualquier parte del mundo</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>🫶🏼 Gracias por elegirte y crear una mejor versión de ti</p>
+            <p style="margin-top: 10px;">Harvey Sarmiento - Asesoría Fitness Premium</p>
+            <p style="margin-top: 5px;">Feliz día y muchas bendiciones 🙌🏻</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/573015619137?text=Hola%20Harvey,%20tengo%20una%20pregunta%20sobre%20la%20asesor%C3%ADa%20fitness" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.203 1.393 1.4-5.203-0.322-0.533c-1.31-2.17-2.003-4.66-2.003-7.223 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62-6.11 13.62-13.62 13.62zM21.305 18.56c-0.387-0.194-2.287-1.127-2.642-1.258-0.355-0.129-0.613-0.193-0.871 0.194-0.258 0.387-0.999 1.258-1.225 1.517-0.226 0.258-0.451 0.29-0.838 0.096-0.387-0.193-1.633-0.602-3.109-1.918-1.149-1.025-1.925-2.291-2.151-2.678-0.226-0.387-0.024-0.596 0.17-0.789 0.174-0.173 0.387-0.451 0.581-0.677 0.193-0.226 0.258-0.387 0.387-0.645 0.129-0.258 0.064-0.483-0.032-0.677-0.096-0.193-0.871-2.099-1.193-2.873-0.314-0.753-0.632-0.651-0.871-0.663-0.226-0.011-0.483-0.013-0.741-0.013s-0.677 0.096-1.032 0.483c-0.355 0.387-1.354 1.322-1.354 3.225s1.386 3.739 1.58 3.997c0.193 0.258 2.731 4.171 6.613 5.85 0.924 0.399 1.646 0.638 2.208 0.817 0.93 0.295 1.776 0.253 2.444 0.153 0.746-0.111 2.287-0.935 2.609-1.839 0.322-0.903 0.322-1.677 0.226-1.839-0.096-0.161-0.355-0.258-0.741-0.451z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Smooth scroll para los enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Agregar funcionalidad de redirección a WhatsApp después del pago
+        document.querySelectorAll('.pricing-card .btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Permitir que el enlace de Bold funcione normalmente
+                // Después de 3 segundos, abrir WhatsApp (dar tiempo para que se procese el pago)
+                setTimeout(() => {
+                    const mensaje = encodeURIComponent('Hola Harvey, acabo de realizar el pago de mi asesoría fitness. Adjunto el comprobante.');
+                    window.open(`https://wa.me/573015619137?text=${mensaje}`, '_blank');
+                }, 3000);
+            });
+        });
+
+        // Animación avanzada al hacer scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animación
+        document.querySelectorAll('.goal-card, .step, .pricing-card, .premium-column').forEach((el, index) => {
+            el.classList.add('scroll-reveal');
+            observer.observe(el);
+        });
+
+        // Parallax effect para el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / 700);
+            }
+        });
+
+        // Animación de entrada para las tarjetas de precios
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        pricingCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Efecto hover mejorado para botones
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Contador animado para los precios
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = '$' + value.toLocaleString('es-CO');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Activar contador cuando las tarjetas sean visibles
+        const priceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const priceElement = entry.target.querySelector('.pricing-price');
+                    const priceText = priceElement.textContent.replace(/[$.]/g, '');
+                    const priceValue = parseInt(priceText);
+                    animateValue(priceElement, 0, priceValue, 1500);
+                    priceObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        pricingCards.forEach(card => {
+            priceObserver.observe(card);
+        });
+
+        // Añadir efecto de brillo al hero badge
+        const badge = document.querySelector('.hero-badge');
+        setInterval(() => {
+            badge.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+        }, 3000);
+
+        // Animación de las tarjetas de objetivos al hacer hover
+        document.querySelectorAll('.goal-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.goal-icon').style.transform = 'scale(1.3) rotate(10deg)';
+                this.querySelector('.goal-icon').style.transition = 'transform 0.3s ease';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.goal-icon').style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
