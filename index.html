@@ -35,9 +35,35 @@
             padding: 0 20px;
         }
 
+        /* Video Section */
+        .video-section {
+            padding: 40px 20px 60px;
+            background: var(--black);
+            position: relative;
+        }
+
+        .video-link-card {
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .video-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(212, 175, 55, 0.4);
+        }
+
+        .video-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            color: var(--gold);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
         /* Header Hero */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -573,6 +599,15 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .video-section {
+                padding: 30px 15px 50px;
+            }
+
+            .video-container {
+                border-radius: 15px;
+                border-width: 1px;
+            }
+
             .pricing-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -597,10 +632,58 @@
                 height: 55px;
             }
         }
+
+        @media (max-width: 480px) {
+            .video-title {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+
+            .video-container {
+                border-radius: 10px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="video-title">Conoce Tu Transformación</h2>
+            <div class="video-link-card" style="max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, var(--gray) 0%, #1a1410 100%); border: 2px solid var(--gold); border-radius: 20px; padding: 50px 40px; text-align: center; box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--gold), var(--gold-light));"></div>
+                
+                <div style="margin-bottom: 30px;">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));">
+                        <circle cx="12" cy="12" r="10" fill="var(--gold)" opacity="0.2"/>
+                        <circle cx="12" cy="12" r="8" fill="var(--gold)"/>
+                        <path d="M10 8l6 4-6 4V8z" fill="var(--black)"/>
+                    </svg>
+                </div>
+                
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin-bottom: 20px; font-weight: 700;">
+                    🎬 Video de Presentación
+                </h3>
+                
+                <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.15rem; margin-bottom: 35px; line-height: 1.6;">
+                    Conoce cómo puedes transformar tu cuerpo y tu mente con mi asesoría premium personalizada
+                </p>
+                
+                <a href="https://youtu.be/e3NkXgjfWo8" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex; align-items: center; gap: 12px; font-size: 1.15rem; padding: 20px 45px; margin: 0;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+                    </svg>
+                    Ver Video Completo
+                </a>
+                
+                <p style="margin-top: 25px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">
+                    ⏱️ El video se abrirá en YouTube • Duración: 3 minutos
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Header Hero -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">Resultados desde el día 10</div>
